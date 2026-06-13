@@ -28,7 +28,6 @@ export default function Chrome({ brand = "Topophilia", github = "#" }) {
       <motion.div className="progress" style={{ scaleX: progress, width: "100%" }} />
       <nav className={`nav ${scrolled ? "scrolled" : ""}`}>
         <a href="#top" className="nav-brand">
-          <span className="dot" />
           {brand}
         </a>
         <div className="nav-links">

@@ -8,9 +8,13 @@ import * as THREE from "three";
    A living topographic surface.
    A high-resolution plane is displaced by animated 3D simplex noise in the
    vertex shader; the fragment shader draws glowing contour lines + a faint
-   city-grid, tinted amber -> coral -> magenta by elevation. The whole field
-   drifts toward the viewer and tilts gently with the cursor.
+   city-grid, tinted pine -> sage -> gold by elevation. The whole field drifts
+   toward the viewer and tilts gently with the cursor. Glowing lines read
+   against a deep-forest ground (additive blending), making the hero the dark
+   accent band of an otherwise light, cream site.
 --------------------------------------------------------------------------- */
+
+const FOREST = "#0f2a1a"; // deep-forest hero ground
 
 const vertexShader = /* glsl */ `
   uniform float uTime;
@@ -102,10 +106,10 @@ const fragmentShader = /* glsl */ `
     float g = 1.0 - min(min(grid.x, grid.y), 1.0);
     g *= 0.18;
 
-    //  warm-dusk gradient by elevation
-    vec3 low  = vec3(1.0, 0.35, 0.54);  // magenta
-    vec3 mid  = vec3(1.0, 0.42, 0.37);  // coral
-    vec3 high = vec3(1.0, 0.70, 0.30);  // amber
+    //  green -> gold gradient by elevation
+    vec3 low  = vec3(0.16, 0.42, 0.27);  // deep pine
+    vec3 mid  = vec3(0.43, 0.61, 0.36);  // sage
+    vec3 high = vec3(0.95, 0.78, 0.38);  // gold
     float h = clamp(vElevation * 0.6 + 0.5, 0.0, 1.0);
     vec3 col = mix(low, mid, smoothstep(0.0, 0.55, h));
     col = mix(col, high, smoothstep(0.45, 1.0, h));
@@ -181,8 +185,8 @@ export default function Hero3D() {
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
         dpr={[1, 1.8]}
       >
-        <color attach="background" args={["#0a0a0f"]} />
-        <fog attach="fog" args={["#0a0a0f", 7, 17]} />
+        <color attach="background" args={[FOREST]} />
+        <fog attach="fog" args={[FOREST, 7, 17]} />
         <Terrain pointer={pointer} />
       </Canvas>
     </div>
