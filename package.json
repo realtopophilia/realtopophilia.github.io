@@ -1,0 +1,23 @@
+{
+  "name": "topophilia",
+  "version": "1.0.0",
+  "description": "Topophilia — personal writing, urban policy memos, and a vibecoded product portfolio by Jason Griess",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@react-three/fiber": "^9.1.0",
+    "motion": "^12.0.0",
+    "next": "^15.5.19",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "three": "^0.172.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
